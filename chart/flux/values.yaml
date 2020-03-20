@@ -145,6 +145,8 @@ git:
     # data: |
     #   [credential "https://github.com"]
     #           username = foo
+  # If enabled, the git-key volume will be a memory volume that can be populated by an init container
+  externalKey: false
 
 # If `true` SOPS support will be enabled
 sops:

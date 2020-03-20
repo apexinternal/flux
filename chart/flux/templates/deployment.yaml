@@ -56,6 +56,10 @@ spec:
           defaultMode: 0400
       {{- end }}
       - name: git-key
+        {{- if .Values.git.externalKey }}
+        emptyDir:
+          medium: Memory
+        {{- else }}
         secret:
           {{- if .Values.git.secretName }}
           secretName: {{ .Values.git.secretName }}
@@ -63,6 +67,7 @@ spec:
           secretName: {{ template "flux.fullname" . }}-git-deploy
           {{- end }}
           defaultMode: 0400
+        {{- end }}
       - name: git-keygen
         emptyDir:
           medium: Memory
